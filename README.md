@@ -1,6 +1,6 @@
 # Test Work for position Unity Developer
 
-![Game Demo](assets\readme\gif_preview)
+![Game Demo](https://github.com/Ivaxamaks/SmallGame_TestWork/blob/Develop/Assets/Readme/Gif_Preview.gif)
 
 ## Overview
 
@@ -10,7 +10,7 @@ It is 2D shooter game where the player must defeat waves of enemies. The player 
 
 Below is the UML diagram representing the main structure and relationships of the game components:
 
-![UML Diagram](assets\readme\uml.png)
+![UML Diagram](https://github.com/Ivaxamaks/SmallGame_TestWork/blob/Develop/Assets/Readme/UML.png)
 
 ## Technologies and Design Patterns Used
 
