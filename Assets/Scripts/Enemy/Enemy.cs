@@ -12,10 +12,10 @@ namespace Enemy
     {
         public Action OnDisposed;
         
+        public EnemyHealthController EnemyHealth;
+        
         private AsyncMessageBus _messageBus;
         private GameSettings _gameSettings;
-        
-        private int _health;
 
         [Inject]
         public void Construct(AsyncMessageBus messageBus)
@@ -26,12 +26,14 @@ namespace Enemy
         private void OnDisable()
         {
             OnDisposed = null;
+            EnemyHealth.OnDied -= Die;
         }
 
         public void Initialize(GameSettings gameSettings)
         {
             _gameSettings = gameSettings;
-            _health = gameSettings.EnemyHealth;
+            EnemyHealth.Initialize(gameSettings.EnemyHealth);
+            EnemyHealth.OnDied += Die;
         }
         
         void Update()
@@ -42,21 +44,12 @@ namespace Enemy
         private void Move()
         {
             var moveSpeed = Random.Range(_gameSettings.MinEnemySpeed, _gameSettings.MaxEnemySpeed);
-            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
-        }
-
-        public void TakeDamage(int damage)
-        {
-            _health -= damage;
-            if (_health <= 0)
-            {
-                Die();
-            }
+            transform.position += Vector3.down * (moveSpeed * Time.deltaTime);
         }
 
         public void Die()
         {
-            _messageBus.Publish(new EnemyDiedEvent());
+            _messageBus.Publish(new EnemyDiedEvent(this));
             OnDisposed?.Invoke();
         }
     }

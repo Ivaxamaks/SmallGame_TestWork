@@ -27,7 +27,7 @@ namespace Player
             if (!other.CompareTag("Enemy")) return;
             var enemy = other.GetComponent<Enemy.Enemy>();
             if (enemy == null) return;
-            enemy.TakeDamage(_damage);
+            enemy.EnemyHealth.TakeDamage(_damage);
             BulletDispose();
         }
 

@@ -2,7 +2,9 @@ using System;
 using System.Threading;
 using Common.Pool;
 using Cysharp.Threading.Tasks;
+using Events;
 using Settings;
+using UniTaskPubSub;
 using Random = UnityEngine.Random;
 
 namespace Enemy
@@ -14,6 +16,7 @@ namespace Enemy
         
         private readonly GameSettings _gameSettings;
         private readonly EnemySpawnPositionsProvider _spawnPositionsProvider;
+        private readonly AsyncMessageBus _asyncMessageBus;
 
         private int _spawnedEnemies;
         private int _playerAmountForWin;
@@ -23,10 +26,12 @@ namespace Enemy
         public EnemySpawnController(
             GameSettings gameSettings,
             EnemyFactory enemyFactory,
-            EnemySpawnPositionsProvider spawnPositionsProvider)
+            EnemySpawnPositionsProvider spawnPositionsProvider,
+            AsyncMessageBus asyncMessageBus)
         {
             _gameSettings = gameSettings;
             _spawnPositionsProvider = spawnPositionsProvider;
+            _asyncMessageBus = asyncMessageBus;
             _enemyPool = new MonoBehaviourPool<Enemy>(enemyFactory.Create, spawnPositionsProvider.transform);
         }
         
@@ -69,6 +74,7 @@ namespace Enemy
             var spawnIndex = Random.Range(0, spawnPositions.Length);
             var enemy = _enemyPool.Take();
             enemy.Initialize(_gameSettings);
+            _asyncMessageBus.Publish(new EnemySpawnEvent(enemy));
             enemy.OnDisposed += () => _enemyPool.Release(enemy);
             enemy.transform.position = spawnPositions[spawnIndex].position;
             _spawnedEnemies++;

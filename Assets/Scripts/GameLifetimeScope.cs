@@ -5,6 +5,7 @@ using Services;
 using Settings;
 using UI;
 using UI.EndBattlePanel;
+using UI.HealthBar;
 using UI.TopHUDPanel;
 using UniTaskPubSub;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private Enemy.Enemy _enemyPrefab;
     [SerializeField] private EnemySpawnPositionsProvider _enemySpawnPositionsProvider;
 
+    [SerializeField] private HealthBar _healthBar;
     [SerializeField] private TopHUDModel topHUD;
     [SerializeField] private EndBattlePanelModel _endPanelModel;
 
@@ -35,6 +37,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterInstance(_boundary);
         builder.RegisterInstance(_enemyPrefab);
         builder.RegisterInstance(_bulletPrefab);
+        builder.RegisterInstance(_healthBar);
 
         builder.Register<BootstrapState>(Lifetime.Singleton);
         builder.Register<GameRunningState>(Lifetime.Singleton);
@@ -49,6 +52,7 @@ public class GameLifetimeScope : LifetimeScope
 
         builder.Register<EnemySpawnController>(Lifetime.Singleton);
         builder.Register<EnemyFactory>(Lifetime.Singleton);
+        builder.Register<HealthBarManager>(Lifetime.Singleton);
         
         builder.RegisterEntryPoint<GameStateMachine>();
     }

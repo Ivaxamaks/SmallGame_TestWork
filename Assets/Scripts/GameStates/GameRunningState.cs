@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Enemy;
 using Settings;
 using UI;
+using UI.HealthBar;
 
 namespace GameStates
 {
@@ -15,6 +16,7 @@ namespace GameStates
         private readonly GameController _gameController;
         private readonly LastGameResultProvider _lastGameResultProvider;
         private readonly Player.Player _player;
+        private readonly HealthBarManager _healthBarManager;
 
         private IDisposable _subscription;
         private StateMachine _stateMachine;
@@ -23,13 +25,15 @@ namespace GameStates
             EnemySpawnController enemySpawnController,
             GameController gameController,
             LastGameResultProvider lastGameResultProvider,
-            Player.Player player)
+            Player.Player player,
+            HealthBarManager healthBarManager)
         {
             _uiController = uiController;
             _enemySpawnController = enemySpawnController;
             _gameController = gameController;
             _lastGameResultProvider = lastGameResultProvider;
             _player = player;
+            _healthBarManager = healthBarManager;
         }
 
         public void Initialize(StateMachine stateMachine)
@@ -43,6 +47,7 @@ namespace GameStates
             _enemySpawnController.Initialize();
             _gameController.Initialize(OnGameEndHandler);
             _player.Initialize();
+            _healthBarManager.Initialize();
             return UniTask.CompletedTask;
         }
 
@@ -57,6 +62,7 @@ namespace GameStates
            _enemySpawnController.Dispose();
            _gameController.Dispose();
            _player.Dispose();
+           _healthBarManager.Dispose();
            return UniTask.CompletedTask;
         }
     }
