@@ -1,16 +1,16 @@
 # Test Work for position Unity Developer
 
-![Game Demo](Assets\Readme\Gif_Preview)
+![Game Demo](assets\readme\gif_preview)
 
 ## Overview
 
-My Awesome Game is a 2D shooter game where the player must defeat waves of enemies. The player can move within a bounded area and shoot automatically at the nearest enemy. The game is built using Unity and features a simple yet engaging gameplay mechanic.
+It is 2D shooter game where the player must defeat waves of enemies. The player can move within a bounded area and shoot automatically at the nearest enemy. The game is built using Unity and features a simple yet engaging gameplay mechanic.
 
 ## UML Diagram
 
 Below is the UML diagram representing the main structure and relationships of the game components:
 
-![UML Diagram](Assets\Readme\UML.png)
+![UML Diagram](assets\readme\uml.png)
 
 ## Technologies and Design Patterns Used
 
