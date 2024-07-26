@@ -69,7 +69,7 @@ namespace Enemy
             var spawnIndex = Random.Range(0, spawnPositions.Length);
             var enemy = _enemyPool.Take();
             enemy.Initialize(_gameSettings);
-            enemy.OnEnemyDied += () => _enemyPool.Release(enemy);
+            enemy.OnDisposed += () => _enemyPool.Release(enemy);
             enemy.transform.position = spawnPositions[spawnIndex].position;
             _spawnedEnemies++;
         }

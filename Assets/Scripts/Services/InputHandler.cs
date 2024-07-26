@@ -15,22 +15,22 @@ namespace Services
         public void Tick()
         {
             
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
                 ForwardButtonPressed?.Invoke();
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKey(KeyCode.S))
             {
                 BackButtonPressed?.Invoke();
             }
             
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
                 LeftButtonPressed?.Invoke();
             }
             
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 RightButtonPressed?.Invoke();
             }

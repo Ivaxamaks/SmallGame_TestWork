@@ -10,7 +10,7 @@ namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        public Action OnEnemyDied;
+        public Action OnDisposed;
         
         private AsyncMessageBus _messageBus;
         private GameSettings _gameSettings;
@@ -21,6 +21,11 @@ namespace Enemy
         public void Construct(AsyncMessageBus messageBus)
         {
             _messageBus = messageBus;
+        }
+
+        private void OnDisable()
+        {
+            OnDisposed = null;
         }
 
         public void Initialize(GameSettings gameSettings)
@@ -37,7 +42,7 @@ namespace Enemy
         private void Move()
         {
             var moveSpeed = Random.Range(_gameSettings.MinEnemySpeed, _gameSettings.MaxEnemySpeed);
-            transform.position = Vector3.MoveTowards(transform.position, transform.forward, moveSpeed * Time.deltaTime);
+            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
         }
 
         public void TakeDamage(int damage)
@@ -52,8 +57,7 @@ namespace Enemy
         public void Die()
         {
             _messageBus.Publish(new EnemyDiedEvent());
-            //AddAnimation
-            OnEnemyDied?.Invoke();
+            OnDisposed?.Invoke();
         }
     }
 }

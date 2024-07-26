@@ -16,7 +16,7 @@ namespace Player
 
         private void Update()
         {
-            transform.position += _direction * _bulletSpeed * Time.deltaTime;
+            transform.position += _direction * (_bulletSpeed * Time.deltaTime);
             _timeSinceSpawn += Time.deltaTime;
 
             if (_timeSinceSpawn >= BULLET_LIFE_TIME) BulletDispose();
@@ -37,6 +37,9 @@ namespace Player
             _direction = direction;
             _damage = damage;
             _timeSinceSpawn = 0f;
+            
+            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
 
         private void BulletDispose()

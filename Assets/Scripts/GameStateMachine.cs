@@ -15,7 +15,6 @@ public class GameStateMachine : StateMachine, IStartable, ITickable
     {
         _inputHandler = inputHandler;
     }
-
     
     public async void Start()
     {

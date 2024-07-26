@@ -8,7 +8,6 @@ using UI.EndBattlePanel;
 using UI.TopHUDPanel;
 using UniTaskPubSub;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 

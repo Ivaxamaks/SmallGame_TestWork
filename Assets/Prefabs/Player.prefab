@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 719175637212333092}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b750b9c9a63f420ebb05220fb22844c7, type: 2}
+  m_Controller: {fileID: 9100000, guid: a2e93f12bb0e0be47a0de2d63aef3344, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -116,8 +116,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5974892525600871682}
   - component: {fileID: 5045923681975015935}
+  - component: {fileID: 3502008289946699470}
   m_Layer: 0
-  m_Name: weapon_rifle_up
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,6 +191,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3502008289946699470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386623775629652449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e707b2270ecb40e78ed28d685b18dd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2527851070354558546}
+  _barrel: {fileID: 0}
 --- !u!1 &5030825189503302255
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +302,6 @@ GameObject:
   - component: {fileID: 5245975060155984071}
   - component: {fileID: 5720665743778206377}
   - component: {fileID: 7391193658605851274}
-  - component: {fileID: 6508564945063835330}
   - component: {fileID: 3663159335974779125}
   m_Layer: 0
   m_Name: Player
@@ -303,7 +317,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6138867075222553286}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6, y: -19.39, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
@@ -312,7 +326,7 @@ Transform:
   - {fileID: 5974892525600871682}
   - {fileID: 7715354192574774407}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3468694620994444723
 SpriteRenderer:
@@ -376,7 +390,7 @@ Animator:
   m_GameObject: {fileID: 6138867075222553286}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f11004f1a5c843fbbe54f5a315cbb675, type: 2}
+  m_Controller: {fileID: 9100000, guid: 03a28049c285440390785f97317e4b57, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -400,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 3663159335974779125}
-  _playerGun: {fileID: 6508564945063835330}
+  _playerGun: {fileID: 3502008289946699470}
   _enemyDetector: {fileID: 7391193658605851274}
 --- !u!114 &7391193658605851274
 MonoBehaviour:
@@ -412,18 +426,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e67ae9f97eb4a72ab31b5d5344db317, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6508564945063835330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6138867075222553286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e707b2270ecb40e78ed28d685b18dd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3663159335974779125

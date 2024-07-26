@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using JetBrains.Annotations;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -15,29 +14,20 @@ namespace Common.Pool
         private readonly List<T> _usedItems = new();
 
         private readonly Transform _parent;
-        [CanBeNull]
         private readonly T _prefab;
         private readonly Func<Transform, T> _factoryMethod;
 
-        public MonoBehaviourPool(
-            T prefab,
-            Transform parent,
-            int defaultCount = 4)
+        public MonoBehaviourPool(T prefab, Transform parent, int defaultCount = 4)
         {
             _parent = parent;
             _prefab = prefab;
-
             WarmUp(defaultCount);
         }
 
-        public MonoBehaviourPool(
-            Func<Transform, T> factoryMethod, 
-            Transform parent, 
-            int defaultCount = 4) 
+        public MonoBehaviourPool(Func<Transform, T> factoryMethod, Transform parent, int defaultCount = 4)
         {
             _parent = parent;
             _factoryMethod = factoryMethod;
-            
             WarmUp(defaultCount);
         }
 
@@ -70,14 +60,16 @@ namespace Common.Pool
 
         public void ReleaseAll()
         {
-            for (var i = 0; i < _usedItems.Count; i++)
+            foreach (var item in _usedItems)
             {
-                _usedItems[i]?.gameObject.SetActive(false);
+                if(item == null || item.gameObject == null) continue;
+                    item.gameObject.SetActive(false);
             }
-
+            
             _notUsedItems.AddRange(_usedItems);
             _usedItems.Clear();
-
+            _notUsedItems.RemoveAll(item => item == null || item.gameObject == null);
+            
             SortBySiblingIndexUnused();
         }
 
@@ -89,7 +81,6 @@ namespace Common.Pool
         public void Release(T item)
         {
             item.gameObject.SetActive(false);
-
             _usedItems.Remove(item);
             _notUsedItems.Add(item);
         }
@@ -112,7 +103,6 @@ namespace Common.Pool
         private void AddNewItemInPool()
         {
             var newItem = Instantiate();
-
             newItem.gameObject.SetActive(false);
 
             var returnToPoolOnDisable = newItem.GetComponent<ReturnToPoolOnDisable>();

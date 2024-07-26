@@ -22,6 +22,7 @@ namespace Player
             _inputHandler.RightButtonPressed += MoveRight;
             _inputHandler.ForwardButtonPressed += MoveForward;
             _inputHandler.BackButtonPressed += MoveBack;
+            
             ResetPosition();
         }
 
